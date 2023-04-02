@@ -26,6 +26,7 @@ body {
     border: none;
     cursor: pointer;
     width: 50%;
+    height: 100%
   }
   
   .cancelbtn {
