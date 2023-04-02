@@ -1,0 +1,39 @@
+body {
+    background-color: #E6E6FA;
+    text-align: center;
+    font-size: 16px;
+    font-family: Helvetica, Sans-Serif;
+  }
+  
+  h1 {
+    color: #E0B0FF;
+  }
+  
+  input[type=text], input[type=password], input[type=email], input[type=number], input[type=date] {
+    width: 20%;
+    padding: 6px 10px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  button {
+    background-color: #CCCCFF;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+  }
+  
+  .cancelbtn {
+    background-color: #AA98A9;
+    float: right;
+  }
+  
+  .signupbtn {
+    float: left;
+  }
+  
