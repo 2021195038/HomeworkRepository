@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome to a Shop</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <form action="action_page.php" style="border:1px solid #ccc">
+      <div class="navigationLinks">
+        <h1>Welcome to a Shop</h1>
+        <a href="login.html">로그인</a>&nbsp;&nbsp;
+        <a href="signup.html">회원가입</a>
+        <hr>
+
+        <p>회원정보 (필수)</p>
+
+        <label for="username"><b>유저 아이디:</b></label>
+        <input type="text" id="username" autofocus autocomplete="on" placeholder="아이디를 입력하세요" required><br>
+
+        <label for="password"><b>비밀번호:</b></label>
+        <input type="password" id="password" autocomplete="off" placeholder="비밀번호를 입력하세요" required><br>
+
+        <label for="confirm-password"><b>비밀번호 확인:</b></label>
+        <input type="password" id="confirm-password" autocomplete="off" placeholder="비밀번호 확인" required><br>
+
+        <hr>
+
+        <label>
+          <input type="checkbox" checked="checked" name="remember" id="remember" style="margin-bottom:15px"> Remember me
+        </label>
+
+        <div class="clearfix">
+          <button type="submit" class="login-btn">Log-In</button>
+          <button type="button" class="cancelbtn">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

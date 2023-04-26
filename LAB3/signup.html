@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <form action="action_page.php" style="border:1px solid #ccc">
+      <div class="container">
+        <h1>Welcome to a Shop</h1>
+        <a href="login.html">로그인</a>
+        &nbsp;&nbsp;
+        <a href="signup.html">회원가입</a>
+        <hr>
+        <p>개인정보 (필수)</p>
+        <label for="이름"><b>이름:</b></label>
+        <input type="text" autofocus autocomplete="on" placeholder="이름을 입력하세요" name="이름" required><br>
+
+        <label for="생일"><b>생일:</b></label>
+        <input type="date" autocomplete="on" id="birthday" name="birthday" autofocus><br>
+
+        <label for="학년"><b>학년:</b></label>
+        <input type="number" step="1" autocomplete="on" placeholder="학년을 입력하세요" name="학년" required><br>
+
+        <label for="전화번호"><b>전화번호:</b></label>
+        <input type="text" autocomplete="on" placeholder="(###)###-####" name="전화번호" required><br>
+
+        <label for="이메일"><b>이메일:</b></label>
+        <input type="email" autocomplete="on" placeholder="이메일을 입력하세요" name="이메일" required><br>
+
+        <label for="유저 아이디"><b>유저 아이디:</b></label>
+        <input type="text" autocomplete="on" placeholder="아이디를 입력하세요" name="아이디" required><br>
+
+        <label for="비밀번호"><b>비밀번호:</b></label>
+        <input type="password" autocomplete="off" placeholder="비밀번호를 입력하세요" name="비밀번호" required><br>
+
+        <label for="비밀번호 확인"><b>비밀번호 확인:</b></label>
+        <input type="password" autocomplete="off" placeholder="비밀번호 확인" name="비밀번호 확인" required><br>
+        <hr>
+
+        <label>
+          <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+        </label><br>
+     
+        <div>
+            <label for="마케팅 수신 동의">마케팅 수신 동의:</label>
+            <input type="radio" id="문자" name="문자" value="문자"
+                   checked>
+            <label for="문자">문자</label>
+
+            <input type="radio" id="이메일" name="이메일" value="이메일">
+            <label for="이메일">이메일</label>
+        </div>
+
+        <div class="clearfix">
+          <button type="submit" class="signupbtn">Sign Up</button>
+          <button type="button" class="cancelbtn">Cancel</button>
+        </div>
+
+      </div>
+    </form>
+</body>
+</html>
