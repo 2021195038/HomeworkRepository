@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dallaon Login Page</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+  <header>
+    <h1>Welcome to Dallaon</h1>
+    <nav id= "navigationFlex" class="flex-container">
+        <a href="login.html">로그인</a>
+        <a href="signup.html">회원가입</a>
+        <a href="index.html">메인페이지</a>
+    </nav>
+  </header>
+  <hr> 
+  <p>회원정보 (필수)</p>
+
+  <label for="username"><b>유저 아이디:</b></label>
+  <input type="text" id="username" autofocus autocomplete="on" placeholder="아이디를 입력하세요" required><br>
+
+  <label for="password"><b>비밀번호:</b></label>
+  <input type="password" id="password" autocomplete="off" placeholder="비밀번호를 입력하세요" required><br>
+
+  <label for="confirm-password"><b>비밀번호 확인:</b></label>
+  <input type="password" id="confirm-password" autocomplete="off" placeholder="비밀번호 확인" required><br>
+
+  <hr>
+
+  <label>
+    <input type="checkbox" checked="checked" name="remember" id="remember" style="margin-bottom:15px"> Remember me
+  </label>
+
+  <div class="clearfix">
+    <button type="submit" class="login-btn">Log-In</button>
+    <button type="button" class="cancelbtn">Cancel</button>
+  </div>
+</body>
+</html>
