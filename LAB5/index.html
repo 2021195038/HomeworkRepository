@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dallaon Main Page</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load JSON data using FetchAPI
+            fetch('product.json')
+                .then(response => response.json())
+                .then(data => {
+                    // Filter and display products based on search criteria
+                    document.querySelector('#search-form').onsubmit = function(event) {
+                        event.preventDefault();
+                        const keyword = document.querySelector('#search-input').value.trim().toLowerCase();
+                        const category = document.querySelector('#category-select').value;
+                        const sorting = document.querySelector('#sorting-select').value;
+
+                        let filteredProducts = data.products.filter(product => {
+                            const matchesKeyword = (
+                                product.name.toLowerCase().includes(keyword) ||
+                                product.description.toLowerCase().includes(keyword)
+                            );
+
+                            const matchesCategory = (
+                                category === '' ||
+                                product.category === category
+                            );
+
+                            return matchesKeyword && matchesCategory;
+                        });
+
+                        if (sorting === 'priceAsc') {
+                            filteredProducts.sort((a, b) => a.price - b.price);
+                        } else if (sorting === 'priceDesc') {
+                            filteredProducts.sort((a, b) => b.price - a.price);
+                        }
+
+                        displayProducts(filteredProducts);
+                    };
+
+                    // Display all products initially
+                    displayProducts(data.products);
+                })
+                .catch(error => console.log('Error:', error));
+
+            // Function to display products
+            function displayProducts(products) {
+                const imageContainer = document.querySelector('.image-container');
+                imageContainer.innerHTML = '';
+
+                // Display products with infinite scroll
+                const perPage = 4; // Number of products to display per page
+                let currentPage = 1;
+                const showProducts = () => {
+                    const start = (currentPage - 1) * perPage;
+                    const end = start + perPage;
+                    const currentProducts = products.slice(start, end);
+
+                    currentProducts.forEach(product => {
+                        const img = document.createElement('img');
+                        img.src = 'images/' + product.image;
+                        img.alt = product.name;
+                        img.dataset.productId = product.id; // Added dataset attribute for product ID
+                        imageContainer.appendChild(img);
+                    });
+
+                    currentPage++;
+                };
+
+                // Call showProducts initially
+                showProducts();
+
+                // Infinite scroll implementation
+                window.addEventListener('scroll', () => {
+                    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+
+                    if (scrollTop + clientHeight >= scrollHeight - 5) {
+                        showProducts();
+                    }
+                });
+            }
+
+            // Handle product selection to show description
+            document.querySelector('.image-container').addEventListener('click', event => {
+                const img = event.target;
+                if (img.tagName === 'IMG') {
+                    const productId = parseInt(img.dataset.productId);
+                    const selectedProduct = data.products.find(product => product.id === productId);
+                    if (selectedProduct) {
+                        const descriptionDiv = document.querySelector('#description');
+                        descriptionDiv.innerHTML = `
+                            <h4>${selectedProduct.name}</h4>
+                            <img src="images/${selectedProduct.image}" alt="${selectedProduct.name}" />
+                            <p>${selectedProduct.description}</p>
+                            <p>${selectedProduct.additionalInfo}</p>
+                            <p>Price: $${selectedProduct.price}</p>
+                        `;
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Dallaon</h1>
+    <nav id= "navigationFlex" class="flex-container">
+        <a href="login.html">로그인</a>
+        <a href="signup.html">회원가입</a>
+        <a href="index.html">메인페이지</a>
+    </nav>
+    <nav>
+        <div class="search-container">
+            <form id="search-form">
+              <input type="text" id="search-input" placeholder="Enter search term">
+              <select id="category-select">
+                <option value="">All Categories</option>
+                <option value="베스트">베스트</option>
+                <option value="신제품">신제품</option>
+                <option value="출시예정">출시예정</option>
+                <option value="기획전">기획전</option>
+              </select>
+              <select id="sorting-select">
+                <option value="">Default Sorting</option>
+                <option value="priceAsc">Price: Low to High</option>
+                <option value="priceDesc">Price: High to Low</option>
+              </select>
+              <button type="submit">Search</button>
+            </form>
+            </div>
+    </nav>
+  </header> 
+
+    <main>
+        <div class="containerBig">
+            <div class="flex-container">
+            <h2>Shop Today's Deals</h2>
+            <hr>
+                <div class="category-container">
+                    <h3>베스트</h3>
+                    <div class="image-container" id="image">
+                        <img src="images/yellow socks.png" alt="yellow socks"/>
+                        <img src="images/blue dress.png" alt="blue dress"/>
+                        <img src="images/nike air force.png" alt="nike air force"/>
+                        <img src="images/check shirt.png" alt="check shirt"/>
+                    </div>
+                </div>
+                <div class="category-container">
+                    <h3>신제품</h3>
+                    <div class="image-container" id="image">
+                        <img src="images/nike air force colorful.png" alt="nike air force colorful"/>
+                        <img src="images/red scarf.png" alt="red scarf"/>
+                        <img src="images/pink bag.png" alt="pink bag"/>
+                        <img src="images/black mini dress.png" alt="black mini dress"/>
+                    </div>
+                </div>
+                <div class="category-container">
+                    <h3>출시예정</h3>
+                    <div class="image-container" id="image">
+                        <img src="images/red zimmerman dress.png" alt="red zimmerman dress"/>
+                        <img src="images/white shoulder bag.png" alt="white shoulder bag"/>
+                        <img src="images/underarmour shorts.png" alt="underarmour shorts"/>
+                        <img src="images/leather belt.png" alt="leather belt"/>
+                    </div>
+                </div>
+                <div class="category-container">
+                    <h3>기획전</h3>
+                    <div class="image-container" id="image">
+                        <img src="images/red tote bag.png" alt="red tote bag"/>
+                        <img src="images/nude heels.png" alt="nude heels"/>
+                        <img src="images/pink dress.png" alt="pink dress"/>
+                        <img src="images/orage pants.png" alt="orange pants"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-container">
+            <h2>About Dallaon</h2>
+            <hr>
+            <p>
+                Dallaon is a trendy clothing store catering specifically to the fashion needs of the modern generation, MZ. 
+                With its finger on the pulse of the latest trends, Dallaon offers a curated selection of stylish apparel and 
+                accessories that reflect the vibrant and diverse tastes of its customers. From chic dresses to trendy 
+                streetwear, their collection boasts an array of fashion-forward choices for both men and women. Dallaon prides 
+                itself on providing high-quality garments that not only exude style but also ensure utmost comfort and durability. 
+                Whether you're searching for the perfect outfit for a special occasion or simply looking to update your wardrobe, 
+                Dallaon is the go-to destination that promises to elevate your fashion game and keep you ahead of the style curve. 
+                Step into the world of Dallaon and experience fashion that speaks to your individuality and sets you apart from the crowd.
+            </p>
+        </div>
+    </main>
+    <footer>
+        <p>Copyright © 2023 Dallaon</p>
+    </footer>
+</body>
+</html>
